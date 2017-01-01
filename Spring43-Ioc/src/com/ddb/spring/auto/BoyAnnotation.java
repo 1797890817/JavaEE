@@ -31,6 +31,7 @@ public class BoyAnnotation {
 	private static Logger logger = Logger.getLogger(BoyAnnotation.class);
 	@Autowired
 	private UsaGirlFriend usaGirlFriend;
+	private static ApplicationContext ctx;
 
 	public UsaGirlFriend getUsaGirlFriend() {
 		return usaGirlFriend;
@@ -43,7 +44,7 @@ public class BoyAnnotation {
 	}
 
 	public static void main(String[] args) {
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext-auto.xml");
+		ctx = new ClassPathXmlApplicationContext("applicationContext-auto.xml");
 		BoyAnnotation boy = (BoyAnnotation) ctx.getBean("boyAnnotation");
 		logger.info(boy.usaGirlFriend.speak());
 	}
