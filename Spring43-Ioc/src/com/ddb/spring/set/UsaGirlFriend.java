@@ -11,5 +11,4 @@ public class UsaGirlFriend implements GirlFriend {
 	public String speak() {
 		return language;
 	}
-
 }

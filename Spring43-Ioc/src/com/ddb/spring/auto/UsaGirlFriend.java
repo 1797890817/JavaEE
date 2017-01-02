@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 /**
  * Component 代表一种组件
  * @author win
- *
  */
 //@Service("usaGirlFriend")
 //@Controller("usaGirlFriend")
@@ -15,5 +14,4 @@ public class UsaGirlFriend {
 	public String speak() {
 		return "english";
 	}
-
 }

@@ -9,7 +9,6 @@ public class BoyConstructor {
 
 	// 声明接口类型的引用，和具体实现类解耦合
 	private GirlFriend girlFriend;
-
 	private static ApplicationContext ctx;
 
 	public BoyConstructor() {

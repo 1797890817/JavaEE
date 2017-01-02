@@ -4,7 +4,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Test {
-
 	private static ApplicationContext ctx;
 
 	public static void main(String[] args) {
@@ -12,5 +11,4 @@ public class Test {
 		DataType entity = (DataType) ctx.getBean("dataType");
 		entity.printValue();
 	}
-
 }

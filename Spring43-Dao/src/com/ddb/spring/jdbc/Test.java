@@ -10,9 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 public class Test {
 	private static final Logger logger = Logger.getLogger(Test.class);
-
 	private JdbcTemplate jdbcTemplate;
-
 	private ApplicationContext ctx;
 
 	public void init() {
@@ -46,7 +44,9 @@ public class Test {
 
 	public Long getCount(String name) {
 		String sql = "select count(*) from users where name = ?";
-		/*return this.jdbcTemplate.queryForLong(sql, name);	//在4.3.3中已经遗弃了这个方法*/		
+		/*
+		 * return this.jdbcTemplate.queryForLong(sql, name); //在4.3.3中已经遗弃了这个方法
+		 */
 		return this.jdbcTemplate.queryForObject(sql, Long.class);
 	}
 
@@ -66,29 +66,25 @@ public class Test {
 	public static void main(String[] args) {
 		Test test = new Test();
 		test.init();
-//		///Users users = new Users();
-//		users.setId(3L);
-//		users.setName("lisi");
-//		users.setPass("666777");
-		//logger.info(test.insert(users));
-		//logger.info(test.update(users));
-//		Users users = test.getOne(1L);
-//		logger.info(users);
-		
+		// ///Users users = new Users();
+		// users.setId(3L);
+		// users.setName("lisi");
+		// users.setPass("666777");
+		// logger.info(test.insert(users));
+		// logger.info(test.update(users));
+		// Users users = test.getOne(1L);
+		// logger.info(users);
+
 		List<Users> usersList = test.getUsersList();
 		logger.info(usersList);
-//		List<Users> usersList = test.getUsersList(users);
-//		logger.info(usersList);
-		
-		/*logger.info(test.getCount("zhangsan"));
-		List<Users> usersList = test.getUsersList(users);
-		logger.info(usersList.size());
-		for(Users users2 : usersList){
-			logger.info(users2);
-		}*/
-		
-		logger.info(test.delete(5L));
-		
-	}
+		// List<Users> usersList = test.getUsersList(users);
+		// logger.info(usersList);
 
+		/*
+		 * logger.info(test.getCount("zhangsan")); List<Users> usersList =
+		 * test.getUsersList(users); logger.info(usersList.size()); for(Users
+		 * users2 : usersList){ logger.info(users2); }
+		 */
+		logger.info(test.delete(5L));
+	}
 }

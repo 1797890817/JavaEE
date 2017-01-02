@@ -1,7 +1,8 @@
 package com.ddb.spring.auto;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
@@ -25,11 +26,10 @@ import org.springframework.stereotype.Component;
  * @author win
  *
  */
-
 @Component("boyAnnotation")
 public class BoyAnnotation {
 	private static Logger logger = Logger.getLogger(BoyAnnotation.class);
-	@Autowired
+	//@Autowired
 	private UsaGirlFriend usaGirlFriend;
 	private static ApplicationContext ctx;
 
@@ -38,7 +38,7 @@ public class BoyAnnotation {
 	}
 
 	// @Resource(type = UsaGirlFriend.class)
-	//@Resource(name = "usaGirlFriend")
+	@Resource(name = "usaGirlFriend")
 	public void setUsaGirlFriend(UsaGirlFriend usaGirlFriend) {
 		this.usaGirlFriend = usaGirlFriend;
 	}
@@ -48,5 +48,4 @@ public class BoyAnnotation {
 		BoyAnnotation boy = (BoyAnnotation) ctx.getBean("boyAnnotation");
 		logger.info(boy.usaGirlFriend.speak());
 	}
-
 }

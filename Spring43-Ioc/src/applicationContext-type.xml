@@ -9,6 +9,7 @@
 		<property name="specialCharacter1">
 			<value><![CDATA[EP&G]]></value>
 		</property>
+		<!-- 把XML的特殊字符替换为实体引用 -->
 		<property name="specialCharacter2">
 			<value>EP&amp;G</value>
 		</property>

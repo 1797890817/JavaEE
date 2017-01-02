@@ -13,7 +13,6 @@ public class BoyPNameSpace {
 	// 声明接口类型的引用，和具体实现类解耦合
 	@Getter@Setter
 	private GirlFriend girlFriend;
-
 	private static ApplicationContext ctx;
 
 	public static void main(String[] args) {
