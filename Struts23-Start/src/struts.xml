@@ -14,5 +14,13 @@
 			<result name="success">/login/success.jsp</result>
 			<result name="error">/login/error.jsp</result>
 		</action>
+		<action name="login2" class="com.ddb.train.struts2.login.LoginAction2">
+			<result name="success">/login/success.jsp</result>
+			<result name="error">/login/error.jsp</result>
+		</action>
+		<action name="login3" class="com.ddb.train.struts2.login.LoginAction3">
+			<result name="success">/login/success.jsp</result>
+			<result name="error">/login/error.jsp</result>
+		</action>
 	</package>
 </struts>
