@@ -43,7 +43,7 @@ public class Test {
 	}
 
 	public Long getCount(String name) {
-		String sql = "select count(*) from users where name = ?";
+		String sql = "select count(*) from users";
 		/*
 		 * return this.jdbcTemplate.queryForLong(sql, name); //在4.3.3中已经遗弃了这个方法
 		 */
@@ -80,11 +80,12 @@ public class Test {
 		// List<Users> usersList = test.getUsersList(users);
 		// logger.info(usersList);
 
-		/*
-		 * logger.info(test.getCount("zhangsan")); List<Users> usersList =
-		 * test.getUsersList(users); logger.info(usersList.size()); for(Users
-		 * users2 : usersList){ logger.info(users2); }
-		 */
-		logger.info(test.delete(5L));
+		
+		  logger.info(test.getCount("zhangsan")); 
+		 /* List<Users> usersList =
+		  test.getUsersList(users); logger.info(usersList.size()); for(Users
+		  users2 : usersList){ logger.info(users2); }*/
+		 
+		//logger.info(test.delete(5L));
 	}
 }
