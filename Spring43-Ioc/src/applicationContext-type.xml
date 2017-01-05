@@ -60,6 +60,7 @@
 				<entry key="badminton" value="羽毛球" />
 				<entry key="football" value="足球" />
 				<entry key="basketball" value="篮球" />
+				<entry key="badminton" value="羽毛球2" />
 			</map>
 		</property>
 		<!-- 注入Properties类型 -->
@@ -70,6 +71,7 @@
 				<prop key="badminton">羽毛球</prop>
 				<prop key="football">足球 </prop>
 				<prop key="basketball">篮球</prop>
+				<!-- <prop key="basketball2" value="篮球2" /> 不允许这样写 -->
 			</props>
 		</property>
 		<!-- 注入空字符串值 -->

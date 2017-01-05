@@ -22,9 +22,7 @@
 	</bean>
 
 	<!-- BoyPNameSpace.java -->
-	<bean id="usaGirlFriend" class="com.ddb.spring.set.UsaGirlFriend"
-		p:language="english" />
+	<bean id="usaGirlFriend" class="com.ddb.spring.set.UsaGirlFriend" p:language="english" />
 	<!-- 使用p命名空间注入属性值 -->
-	<bean id="boyPNameSpace" class="com.ddb.spring.set.BoyPNameSpace"
-		p:girlFriend-ref="usaGirlFriend" />
+	<bean id="boyPNameSpace" class="com.ddb.spring.set.BoyPNameSpace" p:girlFriend-ref="usaGirlFriend" />
 </beans>

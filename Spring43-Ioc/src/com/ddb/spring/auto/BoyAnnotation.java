@@ -1,11 +1,11 @@
 package com.ddb.spring.auto;
 
-import javax.annotation.Resource;
-
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 /**
  * @Component("boyAnnotation") 给组件取个名字
  * @Autowired 注入属性，可以放在属性或者Setter方法上面 byType自动注入
@@ -26,10 +26,13 @@ import org.springframework.stereotype.Component;
  * @author win
  *
  */
-@Component("boyAnnotation")
+//@Component("boyAnnotation")
+//@Controller("boyAnnotation")
+@Service("boyAnnotation")
+//@Repository("boyAnnotation")
 public class BoyAnnotation {
 	private static Logger logger = Logger.getLogger(BoyAnnotation.class);
-	//@Autowired
+	@Autowired
 	private UsaGirlFriend usaGirlFriend;
 	private static ApplicationContext ctx;
 
@@ -37,8 +40,8 @@ public class BoyAnnotation {
 		return usaGirlFriend;
 	}
 
-	// @Resource(type = UsaGirlFriend.class)
-	@Resource(name = "usaGirlFriend")
+	//@Resource(type = UsaGirlFriend.class)
+	//@Resource(name = "usaGirlFriend")
 	public void setUsaGirlFriend(UsaGirlFriend usaGirlFriend) {
 		this.usaGirlFriend = usaGirlFriend;
 	}
