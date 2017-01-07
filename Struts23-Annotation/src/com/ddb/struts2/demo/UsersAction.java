@@ -28,5 +28,4 @@ public class UsersAction extends ActionSupport {
 	public String execute() {
 		return SUCCESS;
 	}
-
 }
