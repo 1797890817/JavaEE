@@ -2,6 +2,8 @@ package com.ddb.struts2.ognl;
 
 import ognl.OgnlContext;
 
+import java.io.PrintStream;
+
 import com.ddb.struts2.ognlvaluestack.Student;
 import com.ddb.struts2.ognlvaluestack.Teacher;
 
@@ -22,13 +24,14 @@ public class OgnlTest1 {
 		context.put("student", stu);
 		context.put("teacher", tea);
 
-		System.out.println(Ognl.getValue("name", context, stu));
-		System.out.println(Ognl.getValue("name", context, tea));
+		PrintStream out = System.out;
+		out.println(Ognl.getValue("name", context, stu));
+		out.println(Ognl.getValue("name", context, tea));
 
-		System.out.println(Ognl.getValue("student.name", context));
-		System.out.println(Ognl.getValue("student.score", context));
+		out.println(Ognl.getValue("student.name", context));
+		out.println(Ognl.getValue("student.score", context));
 
-		System.out.println(Ognl.getValue("teacher.name", context));
-		System.out.println(Ognl.getValue("teacher.salary", context));
+		out.println(Ognl.getValue("teacher.name", context));
+		out.println(Ognl.getValue("teacher.salary", context));
 	}
 }
