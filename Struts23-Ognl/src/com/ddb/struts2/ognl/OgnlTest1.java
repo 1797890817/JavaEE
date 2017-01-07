@@ -1,6 +1,10 @@
 package com.ddb.struts2.ognl;
 
 import ognl.OgnlContext;
+
+import com.ddb.struts2.ognlvaluestack.Student;
+import com.ddb.struts2.ognlvaluestack.Teacher;
+
 import ognl.Ognl;
 import ognl.OgnlException;
 

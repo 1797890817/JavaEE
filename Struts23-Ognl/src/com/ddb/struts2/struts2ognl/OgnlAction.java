@@ -86,20 +86,15 @@ public class OgnlAction extends ActionSupport {
 		System.out.println(valueStack.findValue("name"));
 		valueStack.push(tea);
 		System.out.println(valueStack.findValue("name"));
-		
 		System.out.println("=============================");
-		
 		System.out.println(valueStack.findValue("score"));
 		System.out.println(valueStack.findValue("salary"));
 		
 		System.out.println("=============================");
-		
 		valueStack.setValue("name", "Rose");
 		System.out.println(valueStack.findValue("name"));
 		valueStack.setValue("score", "80");
 		System.out.println(valueStack.findValue("score"));
-		
 		System.out.println("=============================");
-		
 	}
 }

@@ -4,11 +4,9 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-
 	<package name="ognl" extends="struts-default">
 		<action name="Ognl" class="com.ddb.struts2.struts2ognl.OgnlAction">
 			<result name="success">/ognl.jsp</result>
 		</action>
 	</package>
-
 </struts>

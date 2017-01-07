@@ -2,7 +2,9 @@ package com.ddb.struts2.struts2ognl;
 
 import lombok.Getter;
 import lombok.Setter;
-@Getter@Setter
+
+@Getter
+@Setter
 public class Address {
 	private String country;
 	private String city;
@@ -22,7 +24,6 @@ public class Address {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return this.country+","+this.city+","+this.street;
+		return this.country + "," + this.city + "," + this.street;
 	}
-
 }

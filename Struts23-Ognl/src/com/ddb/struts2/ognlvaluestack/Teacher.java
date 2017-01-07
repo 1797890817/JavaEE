@@ -18,6 +18,4 @@ public class Teacher {
 	public String toString() {
 		return this.name+":"+this.salary;
 	}
-	
-	
 }
