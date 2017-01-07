@@ -15,21 +15,13 @@ public class RegisterAction extends ActionSupport {
 	private static final long serialVersionUID = 409254021890273331L;
 
 	private String userName;
-
 	private String password;
-
 	private String gender;
-
 	private String about;
-
 	private String country;
-
 	private List<Country> countryList;
-
 	private String[] community;
-
 	private List<String> communityList;
-
 	private Boolean mailingList;
 
 	public String populate() {
@@ -56,5 +48,4 @@ public class RegisterAction extends ActionSupport {
 	public String execute() {
 		return SUCCESS;
 	}
-
 }
