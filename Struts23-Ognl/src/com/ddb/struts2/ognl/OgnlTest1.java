@@ -27,7 +27,7 @@ public class OgnlTest1 {
 		PrintStream out = System.out;
 		out.println(Ognl.getValue("name", context, stu));
 		out.println(Ognl.getValue("name", context, tea));
-
+		//通过对象的属性获取值
 		out.println(Ognl.getValue("student.name", context));
 		out.println(Ognl.getValue("student.score", context));
 

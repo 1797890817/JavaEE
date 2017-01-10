@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://192.168.1.10:3306/train</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="connection.password">root</property>
+        <property name="connection.pool_size">1</property> <!-- 连接池大小 -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property> <!-- 数据库方言 -->
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property> <!-- 是否格式化sql语句  -->
+		<!--         
+        	hbm2ddl.auto
+        	create-drop  先创建后删除
+        	create       每次运行创建表
+        	update       更新表结构
+        	validate     校验映射文件和数据库中的表对应情况（不常用）
+         -->
+        <property name="hbm2ddl.auto">update</property>
+        
+        <!-- 导入模块的配置文件 -->
+        <mapping resource="com/ddb/hibernate/users/Users.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
