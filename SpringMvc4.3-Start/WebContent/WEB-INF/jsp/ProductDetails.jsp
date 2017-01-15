@@ -12,7 +12,7 @@
 		<h5>Details:</h5>
 		Product Name:${product.name} <br />
 		Description:${product.description} <br /> 
-		Price:${product.price} <br />
+		Price:￥${product.price} <br />
 	</div>
 </body>
 </html>
