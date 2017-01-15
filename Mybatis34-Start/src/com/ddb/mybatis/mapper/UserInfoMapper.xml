@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ddb.mybatis.domain.UserInfo"> 
+    <!-- 返回结果对象属性与表字段映射 -->
+	<resultMap type="UserInfo" id="resultListUserInfo">
+        <id column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+	</resultMap>	
+	<!-- 查询所有记录 -->
+	<select id="getUserInfoList" parameterType="com.ddb.mybatis.domain.UserInfo" resultMap="resultListUserInfo">
+        select * from user_info 
+        <where>
+	        <if test="null != id"> and id = #{id:INTEGER}</if>		
+			<if test="null != username and '' != username"> and username like concat('%',#{username:VARCHAR},'%')</if>
+			<if test="null != password and '' != password"> and password = #{password:VARCHAR}</if> 
+    	</where>
+    </select>    
+    <!-- 根据id查询得到一个UserInfo对象     -->
+    <select id="getUserInfoById" parameterType="Integer" resultType="com.ddb.mybatis.domain.UserInfo">
+        select id,username,password from user_info where id=#{id:INTEGER}
+    </select>    
+    <!-- 插入数据库表数据     -->
+    <insert id="insertUserInfo" parameterType="com.ddb.mybatis.domain.UserInfo">  
+    	insert into user_info(username, password) value (#{username}, #{password}) 
+    </insert>     
+    <!-- 更新数据库表数据 -->
+    <update id="updateUserInfo" parameterType="com.ddb.mybatis.domain.UserInfo">    
+    	update user_info set username=#{username:VARCHAR},password=#{password:VARCHAR} where id=#{id:INTEGER}
+    </update>
+	<!-- 根据id删除数据库表数据 -->
+	<delete id="deleteUserInfo" parameterType="Integer">
+        delete from user_info where id=#{id:INTEGER}
+    </delete>
+</mapper>
