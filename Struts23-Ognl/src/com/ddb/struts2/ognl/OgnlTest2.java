@@ -29,10 +29,15 @@ public class OgnlTest2 {
 		 * 
 		 */
 		out.println(Ognl.getValue("'Hello!'", context));
+		out.println(Ognl.getValue("Hello", context));
 		out.println(Ognl.getValue("'A'", context));
+		out.println(Ognl.getValue("A", context));
 		out.println(Ognl.getValue("88", context));
+		out.println(Ognl.getValue("'88'", context));
 		out.println(Ognl.getValue("true", context));
+		out.println(Ognl.getValue("'true'", context));
 		out.println(Ognl.getValue("null", context));
+		out.println(Ognl.getValue("'null'", context));
 		/**
 		 * 
 		 */
@@ -88,7 +93,7 @@ public class OgnlTest2 {
 		Map map= (Map)Ognl.getValue("#{'key1':'value1','key2':'value2','key3':'value3'}", context);
 		out.println(map);
 		/**
-		 * 放置List
+		 * 放置List 
 		 */
 		List<Teacher> teacherList=new ArrayList<Teacher>();
 		teacherList.add(new Teacher("Jack1",2000));

@@ -1,5 +1,6 @@
 package com.ddb.struts2.struts2ognl;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -83,18 +84,19 @@ public class OgnlAction extends ActionSupport {
 		
 		ValueStack valueStack=ActionContext.getContext().getValueStack();  
 		valueStack.push(stu);
-		System.out.println(valueStack.findValue("name"));
+		PrintStream out = System.out;
+		out.println(valueStack.findValue("name"));
 		valueStack.push(tea);
-		System.out.println(valueStack.findValue("name"));
-		System.out.println("=============================");
-		System.out.println(valueStack.findValue("score"));
-		System.out.println(valueStack.findValue("salary"));
+		out.println(valueStack.findValue("name"));
+		out.println("=============================");
+		out.println(valueStack.findValue("score"));
+		out.println(valueStack.findValue("salary"));
 		
-		System.out.println("=============================");
+		out.println("=============================");
 		valueStack.setValue("name", "Rose");
-		System.out.println(valueStack.findValue("name"));
+		out.println(valueStack.findValue("name"));
 		valueStack.setValue("score", "80");
-		System.out.println(valueStack.findValue("score"));
-		System.out.println("=============================");
+		out.println(valueStack.findValue("score"));
+		out.println("=============================");
 	}
 }

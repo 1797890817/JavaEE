@@ -119,7 +119,7 @@
 			<td><s:property value="persons[2].aliases[0]" /></td>
 		</tr>
 	</table>
-
+	
 	<p>
 	<table border="1">
 		<caption>
@@ -175,5 +175,7 @@
 			<li><s:property /></li>
 		</s:iterator>
 	</ul>
+	<p>字串测试</p>
+	<s:property value="'chinaprc'"/>
 </body>
 </html>
