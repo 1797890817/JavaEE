@@ -34,7 +34,7 @@ public class SaveProductController implements Controller {
 		
 		//省略Ｐｒｏｄｕｃｔ数据保存到数据库代码
 		
-		return new ModelAndView("/WEB-INF/jsp/ProductDetails.jsp","product",product);
+		return new ModelAndView("ProductDetails","product",product);
 	}
 
 }

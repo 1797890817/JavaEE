@@ -5,4 +5,13 @@
 
 	<bean name="/product_input.action" class="com.ddb.springmvc.controller.InputProductController" />
 	<bean name="/product_save.action" class="com.ddb.springmvc.controller.SaveProductController" />
+
+	<!-- 配置SpringMVC的视图解析器 -->
+	<!-- 视图解析器自动增加前缀和后缀 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
 </beans>
