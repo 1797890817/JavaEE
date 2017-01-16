@@ -24,5 +24,4 @@
 		<!-- <url-pattern>/</url-pattern> -->
 		<url-pattern>*.action</url-pattern>
 	</servlet-mapping>
-
 </web-app>

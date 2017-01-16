@@ -35,5 +35,4 @@ public class ProductServiceImpl implements ProductService {
 	public Product get(long id) {
 		return products.get(id);
 	}
-
 }
