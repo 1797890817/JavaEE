@@ -10,6 +10,8 @@
 	<div id="global">
 		<h4>The product has been saved!</h4>
 		<h5>Details:</h5>
+		Tips:${message} <br/>
+		Product ID：${product.id}<br/>
 		Product Name:${product.name} <br />
 		Description:${product.description} <br /> 
 		Price:￥${product.price} <br />
