@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xxx.dao.SmiShopInfoMapper">
+	<resultMap id="BaseResultMap" type="SmiShopInfo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="shop_no" property="shopNo" jdbcType="VARCHAR" />
+		<result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+		<result column="shop_type" property="shopType" jdbcType="VARCHAR" />
+		<result column="shop_password" property="shopPassword" jdbcType="VARCHAR" />
+		<result column="note" property="note" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		 id, shop_no, shop_name, shop_type, shop_password, note 
+	</sql>
+
+	<!-- 根据门店编码和密码获取门店信息 -->
+	<select id="getByNoAndPwd" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from smi_shop_info
+		where shop_no = #{shopNo,jdbcType=VARCHAR} and shop_password = #{password,jdbcType=VARCHAR}
+	</select>
+
+</mapper>
