@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+        default-autowire="byName" default-lazy-init="true">
+	<description>Spring公共配置 </description>
+	
+	<!-- 配置自动扫描包: 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+	<context:component-scan base-package="cn.goodjobs.cms" />
+	
+	<!-- 导入资源文件 -->
+	<context:property-placeholder location="classpath:application.properties" />
+
+	<!-- dbcp 数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+
+		<property name="maxActive" value="${dbcp.maxActive}" />
+		<property name="maxIdle" value="${dbcp.maxIdle}" />
+		<property name="defaultAutoCommit" value="false" />
+
+		<property name="timeBetweenEvictionRunsMillis" value="3600000" />
+		<property name="minEvictableIdleTimeMillis" value="3600000" />
+	</bean>
+
+	<!-- hibernate配置 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<!-- 配置数据源属性 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 使用 hibernateProperties 属相来配置 Hibernate 原生的属性 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.use_sql_comments">${hibernate.use_sql_comments}</prop>
+				<prop key="current_session_context_class">thread</prop>
+			</props>
+		</property>
+		<!-- 配置 hibernate 映射文件的位置及名称, 可以使用通配符 -->
+		<property name="mappingLocations" value="classpath:cn/goodjobs/cms/dao/mapper/*.hbm.xml" />
+	</bean>
+
+	<!-- 定义事务管理器hibernate4必须配置为开启事务 否则 getCurrentSession()获取不到 --> 
+	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+         <property name="sessionFactory" ref="sessionFactory" />  
+    </bean>
+	<!-- 下面使用aop切面的方式来实现 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		 <!--配置事务传播性，隔离级别以及超时回滚等问题 -->
+		<tx:attributes>
+			<tx:method name="create*" />
+			<tx:method name="modify*" />
+			<tx:method name="remove*" />			
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config proxy-target-class="true">
+		<!--配置事务切点 -->
+		<aop:pointcut id="txPointcut" expression="execution(* cn.goodjobs.cms.service.*Service.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
+	</aop:config>
+	
+	<!-- cglib -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+
+</beans>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.action.extension" value="action" />
+    <package name="default" extends="struts-default">		
+ 	 	
+    	<!-- 查询 -->
+		<action name="queryUsers" method="query" class="cn.goodjobs.cms.action.UsersAction">
+			<result name="list">/list.jsp</result>
+		</action>
+		<!-- 进入添加页面input.jsp -->
+		<action name="addUsers" method="add" class="cn.goodjobs.cms.action.UsersAction">
+			<result name="input">/input.jsp</result>
+		</action>
+		<!-- 进入修改页面input.jsp -->
+		<action name="editUsers" method="edit" class="cn.goodjobs.cms.action.UsersAction">
+			<result name="input">/input.jsp</result>
+		</action>		
+		<!-- 删除 -->
+		<action name="deleteUsers" method="delete" class="cn.goodjobs.cms.action.UsersAction">
+			<result name="save" type="redirect" >queryUsers.action</result>
+		</action>		
+		<!-- 保存，包括insert和update -->
+		<action name="saveUsers" method="save" class="cn.goodjobs.cms.action.UsersAction">
+			<result name="save" type="redirect" >queryUsers.action</result>
+		</action>		
+
+    </package>
+</struts>
