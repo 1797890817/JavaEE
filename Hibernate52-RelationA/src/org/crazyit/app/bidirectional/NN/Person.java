@@ -37,7 +37,8 @@ public class Person
 	private String name;
 	private int age;
 	// 定义该Person实体所有关联的Address实体
-	@ManyToMany(targetEntity=Address.class)
+	@ManyToMany(targetEntity=Address.class,mappedBy="persons")	//是另一个实体对的关联属性
+	/*@ManyToMany(targetEntity=Address.class)	
 	// 映射连接表，指定连接表的表名为person_address
 	@JoinTable(name="person_address",
 		// 映射连接表中名为person_id的外键列，
@@ -46,7 +47,7 @@ public class Person
 		// 映射连接表中名为address_id的外键列，
 		// 该列参数当前实体的关联实体对应表的address_id主键列
 		inverseJoinColumns=@JoinColumn(name="address_id", referencedColumnName="address_id")
-	)
+	)*/
 	private Set<Address> addresses= new HashSet<>();
 
 	
