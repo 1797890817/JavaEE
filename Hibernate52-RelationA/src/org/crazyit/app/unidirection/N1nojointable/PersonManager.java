@@ -1,6 +1,6 @@
 package org.crazyit.app.unidirection.N1nojointable;
 
-import org.crazyit.app.unidirection.util.HibernateUtil;
+import org.crazyit.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -44,6 +44,7 @@ public class PersonManager {
 		HibernateUtil.closeSession();
 	}
 
+	@SuppressWarnings("unused")
 	private void testPerson() {
 		Session session = HibernateUtil.currentSession();
 		Transaction tx = session.beginTransaction();

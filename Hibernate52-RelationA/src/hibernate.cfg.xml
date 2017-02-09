@@ -48,8 +48,20 @@
 		<!-- <mapping class="org.crazyit.app.unidirection.oneN.noJointable.Person"/>
 		<mapping class="org.crazyit.app.unidirection.oneN.noJointable.Address"/> -->
 		
-		<mapping class="org.crazyit.app.unidirection.oneN.Jointable.Person"/>
-		<mapping class="org.crazyit.app.unidirection.oneN.Jointable.Address"/>
-		<!-- <mapping package="org.crazyit.app.domain" /> -->
+		<!-- <mapping class="org.crazyit.app.unidirection.oneN.Jointable.Person"/>
+		<mapping class="org.crazyit.app.unidirection.oneN.Jointable.Address"/> -->
+		
+		<!-- <mapping class="org.crazyit.app.unidirection.NN.Person"/>
+		<mapping class="org.crazyit.app.unidirection.NN.Address"/> -->
+		
+		<!-- <mapping class="org.crazyit.app.bidirectional.oneN.nojoinTable.Person"/>
+		<mapping class="org.crazyit.app.bidirectional.oneN.nojoinTable.Address"/> -->
+		
+		<!-- <mapping class="org.crazyit.app.bidirectional.oneN.joinTable.Person"/>
+		<mapping class="org.crazyit.app.bidirectional.oneN.joinTable.Address"/> -->
+		
+		<mapping class="org.crazyit.app.bidirectional.NN.Person"/>
+		<mapping class="org.crazyit.app.bidirectional.NN.Address"/>
+		
 	</session-factory>
 </hibernate-configuration>

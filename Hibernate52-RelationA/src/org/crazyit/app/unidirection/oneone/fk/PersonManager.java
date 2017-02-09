@@ -1,6 +1,6 @@
 package org.crazyit.app.unidirection.oneone.fk;
 
-import org.crazyit.app.unidirection.util.HibernateUtil;
+import org.crazyit.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 /**
