@@ -34,8 +34,22 @@
 		<!-- 将SQL脚本进行格式化后再输出 -->
 		<property name="hibernate.format_sql">true</property>
 		<!-- 罗列所有持久化类的类名 -->
-		<!-- <mapping class="org.crazyit.app.domain.Person"/>
-		<mapping class="org.crazyit.app.domain.Address"/> -->
+<!-- 		<mapping class="org.crazyit.app.unidirection.N1nojointable.Person"/>
+		<mapping class="org.crazyit.app.unidirection.N1nojointable.Address"/>
+		<mapping class="org.crazyit.app.unidirection.N1jointable.Person"/>
+		<mapping class="org.crazyit.app.unidirection.N1jointable.Address"/> -->
+		
+		<!-- <mapping class="org.crazyit.app.unidirection.oneone.fk.Person"/>
+		<mapping class="org.crazyit.app.unidirection.oneone.fk.Address"/> -->
+		
+		<!-- <mapping class="org.crazyit.app.unidirection.oneone.jointable.Person"/>
+		<mapping class="org.crazyit.app.unidirection.oneone.jointable.Address"/> -->
+		
+		<!-- <mapping class="org.crazyit.app.unidirection.oneN.noJointable.Person"/>
+		<mapping class="org.crazyit.app.unidirection.oneN.noJointable.Address"/> -->
+		
+		<mapping class="org.crazyit.app.unidirection.oneN.Jointable.Person"/>
+		<mapping class="org.crazyit.app.unidirection.oneN.Jointable.Address"/>
 		<!-- <mapping package="org.crazyit.app.domain" /> -->
 	</session-factory>
 </hibernate-configuration>

@@ -30,8 +30,8 @@ public class HibernateUtil
 			Configuration cfg = new Configuration()
 					//.addAnnotatedClass(org.crazyit.app.unidirection.N1nojointable.Person.class)
 					//.addAnnotatedClass(org.crazyit.app.unidirection.N1nojointable.Address.class)
-					.addAnnotatedClass(org.crazyit.app.unidirection.N1jointable.Person.class)
-					.addAnnotatedClass(org.crazyit.app.unidirection.N1jointable.Address.class)
+					//.addAnnotatedClass(org.crazyit.app.unidirection.N1jointable.Person.class)
+					//.addAnnotatedClass(org.crazyit.app.unidirection.N1jointable.Address.class)
 					//.addAnnotatedClass(org.crazyit.app.unidirection.oneone.fk.Person.class)
 					//.addAnnotatedClass(org.crazyit.app.unidirection.oneone.fk.Address.class)
 					//.addAnnotatedClass(org.crazyit.app.unidirection.oneone.jointable.Person.class)
@@ -45,7 +45,8 @@ public class HibernateUtil
 			// 以Configuration实例来创建SessionFactory实例
 			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 				.applySettings(cfg.getProperties()).build();
-			sessionFactory = cfg.buildSessionFactory(serviceRegistry);
+			//sessionFactory = cfg.buildSessionFactory(serviceRegistry);
+			sessionFactory = cfg.buildSessionFactory();
 		}
 		catch (Throwable ex)
 		{
