@@ -60,8 +60,20 @@
 		<!-- <mapping class="org.crazyit.app.bidirectional.oneN.joinTable.Person"/>
 		<mapping class="org.crazyit.app.bidirectional.oneN.joinTable.Address"/> -->
 		
-		<mapping class="org.crazyit.app.bidirectional.NN.Person"/>
-		<mapping class="org.crazyit.app.bidirectional.NN.Address"/>
+		<!-- <mapping class="org.crazyit.app.bidirectional.NN.Person"/>
+		<mapping class="org.crazyit.app.bidirectional.NN.Address"/> -->
 		
+		<!-- <mapping class="org.crazyit.app.bidirectional.oneOne.FK.Person"/>
+		<mapping class="org.crazyit.app.bidirectional.oneOne.FK.Address"/> -->
+		
+		<!-- <mapping class="org.crazyit.app.componentEntity.Person"/>
+		<mapping class="org.crazyit.app.componentEntity.School"/>  -->
+		
+		<!-- <mapping class="org.crazyit.app.oneNentityId.Order"/>
+		<mapping class="org.crazyit.app.oneNentityId.OrderItem"/>
+		<mapping class="org.crazyit.app.oneNentityId.Product"/> -->
+		
+		<!-- <mapping class="org.crazyit.app.oneNcompositeId.Person"/>
+		<mapping class="org.crazyit.app.oneNcompositeId.Address"/> -->
 	</session-factory>
 </hibernate-configuration>
