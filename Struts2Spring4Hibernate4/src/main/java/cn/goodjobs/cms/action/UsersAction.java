@@ -32,7 +32,7 @@ public class UsersAction extends ActionSupport{
 	public void setUsers(Users users) {
 		this.users = users;
 	}
-	
+		// add git demo code
 	public String query()throws Exception{	
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String requestPage = request.getParameter("requestPage");
