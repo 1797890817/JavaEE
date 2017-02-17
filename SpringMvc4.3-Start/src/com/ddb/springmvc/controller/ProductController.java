@@ -15,6 +15,7 @@ import com.ddb.springmvc.form.ProductForm;
 import com.ddb.springmvc.service.ProductService;
 
 @Controller
+//@RequestMapping("/springmvc")		//基础URL，本例增加基础URL需要在请求处同步修改。否则404！
 public class ProductController {
 	private static final Logger logger = Logger.getLogger(ProductController.class);
 
