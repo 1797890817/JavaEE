@@ -28,9 +28,12 @@ public class UserService {
 		return userDao.findByUsername(username);
 	}
 	
-	
+	public List<User> findUserByPassword(String password) {
+		return userDao.findByPassword(password);
+	}
 	
 	public User findUserById(long id){
 		return this.userDao.findById(id);
 	}
+
 }

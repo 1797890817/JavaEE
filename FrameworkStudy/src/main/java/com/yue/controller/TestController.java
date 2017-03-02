@@ -55,6 +55,14 @@ public class TestController {
 	@ResponseBody
 	@RequestMapping("/findbyusername/{username}")
 	public List<User> findByUsername(@PathVariable String username){
+		System.out.println("In findByUsername");
 		return this.userService.findUserByUsername(username);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/findbypassword/{password}")
+	public List<User> findByPassword(@PathVariable String password){
+		System.out.println("In findByPassword!");
+		return this.userService.findUserByPassword(password);
 	}
 }
