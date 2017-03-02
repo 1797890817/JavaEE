@@ -80,6 +80,8 @@
 	</bean>
 
 	<!-- 拦截器方式配置事物 -->
+	<!-- http://blog.csdn.net/bigtree_3721/article/details/53966617 属性说明 -->
+	<!-- http://blog.csdn.net/mini_jike/article/details/46275079 -->
 	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="save*" propagation="REQUIRED" />
