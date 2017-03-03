@@ -4,6 +4,12 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
     id="WebApp_ID" version="3.0">
     
+     <!-- 系统首页 -->
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    
     <!-- 定义LOG4J监听器 -->
     <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
@@ -27,7 +33,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>springMvc</servlet-name>
-        <url-pattern>*.do</url-pattern>
+       <!--  <url-pattern>*.do</url-pattern> 如果使用后缀，配置中的首页转发会失效！ -->
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     
     <!-- spring监听器 -->
@@ -65,9 +72,5 @@
         <session-timeout>15</session-timeout>
     </session-config>
     
-    <!-- 系统首页 -->
-    <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
+   
 </web-app>
