@@ -29,6 +29,8 @@ public class SmiShopInfoService implements ISmiShopInfoService {
 			throw new Exception("门店编码为空");
 		}
 
+		//System.out.println("In service ,Test unuse xml file config");
+		//return shopInfoMapper.getByNo(shopNo);
 		return shopInfoMapper.getByNoAndPwd(password, shopNo);
 	}
 

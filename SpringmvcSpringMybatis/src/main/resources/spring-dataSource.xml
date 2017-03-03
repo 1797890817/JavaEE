@@ -61,9 +61,8 @@
 
 		<!-- 加载mybatis的配置文件 -->
 		<property name="configLocation" value="classpath:mybatis-config.xml" />
-		<!-- 自动扫描model目录中的映射xml文件，省去了在config中手工配置 -->
+		<!-- 自动扫描model目录中的映射xml文件，省去了在config中手工配置 ,若完全使用注解，此属性可以不用配置-->
 		<property name="mapperLocations" value="classpath:com/xxx/dao/mapping/**/*.xml" />
-		<!-- <property name="mapperLocations" value="classpath:com.xxx.dao.mapping.**.*.xml" /> -->
 		<!-- 为指定包下的类指定别名，省去了编写全限定名 ，默认使用类名 -->
 		<property name="typeAliasesPackage" value="com.xxx" />
 	</bean>
