@@ -1,2 +1,4 @@
-/build/
-/.classpath
+/classes/
+*.class
+**/target/*
+/target/

@@ -1,1 +1,4 @@
-/build/
+/classes/
+*.class
+**/target/*
+/target/
