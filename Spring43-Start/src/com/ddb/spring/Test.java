@@ -10,6 +10,7 @@ public class Test {
 		System.out.println(object);
 	}
 
+	//传统的方式创建实例对象
 	public static void test1() {
 		Users users = new Users();
 		users.setName("Teacher");
@@ -19,6 +20,7 @@ public class Test {
 
 	}
 
+	//使用Spring的方式
 	public static void test2() {
 		//使用ClassPathXmlApplicationContext的方式实例化Spring的上下文
 		ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
