@@ -17,8 +17,8 @@ public class UserServiceImpl implements UserService {
 	//使用lombok生成的dao属性的Setter访问器，会被Spring调用，实现设置注入
 	
 	@Override
-	public void addNewUser(User user) {
+	public int addNewUser(User user) {
 		//调用DAO的方法保存用户的信息
-		dao.save(user);
+		return dao.save(user);
 	}
 }

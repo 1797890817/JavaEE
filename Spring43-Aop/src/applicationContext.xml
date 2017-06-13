@@ -16,7 +16,7 @@
 	
 	<aop:config>
 		<aop:pointcut id="pointcut"
-			expression="execution(public void addNewUser(entity.User))" />
+			expression="execution(public int addNewUser(entity.User))" />
 		<aop:advisor pointcut-ref="pointcut" advice-ref="loggerBefore"/>
 		<aop:advisor pointcut-ref="pointcut" advice-ref="loggerAfterReturning"/>
 	</aop:config>

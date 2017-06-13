@@ -12,8 +12,10 @@ import entity.User;
 public class UserDaoImpl implements UserDao {
 
 	@Override
-	public void save(User user) {
+	public int save(User user) {
 		// 这里并没有实现完整的数据库操作，仅为了说明问题
 		System.out.println("保存用户信息到数据库！");
+		System.out.println(user);
+		return 5;
 	}
 }

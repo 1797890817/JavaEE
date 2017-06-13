@@ -6,6 +6,8 @@ import java.util.Arrays;
 import org.apache.log4j.Logger;
 import org.springframework.aop.MethodBeforeAdvice;
 
+import entity.User;
+
 /**
  * 通过MethodBeforeAdvice实现前置增强
  * 
