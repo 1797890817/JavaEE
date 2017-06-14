@@ -43,7 +43,7 @@ public class Test {
 	}
 
 	public Long getCount(String name) {
-		String sql = "select count(*) from users";
+		String sql = "select count(*) from users where name='" + name + "'";
 		/*
 		 * return this.jdbcTemplate.queryForLong(sql, name); //在4.3.3中已经遗弃了这个方法
 		 */
@@ -66,26 +66,29 @@ public class Test {
 	public static void main(String[] args) {
 		Test test = new Test();
 		test.init();
-		// ///Users users = new Users();
-		// users.setId(3L);
-		// users.setName("lisi");
-		// users.setPass("666777");
+		Users users = new Users();
+		// users.setId(1L);
+		users.setName("zhaosi");
+		users.setPass("666777");
+		// users.setName("zhaoliu");
+		// users.setPass("888888");
 		// logger.info(test.insert(users));
 		// logger.info(test.update(users));
 		// Users users = test.getOne(1L);
 		// logger.info(users);
 
-		List<Users> usersList = test.getUsersList();
+		// List<Users> usersList = test.getUsersList();
+		List<Users> usersList = test.getUsersList(users);
 		logger.info(usersList);
-		// List<Users> usersList = test.getUsersList(users);
-		// logger.info(usersList);
 
-		
-		  logger.info(test.getCount("zhangsan")); 
-		 /* List<Users> usersList =
-		  test.getUsersList(users); logger.info(usersList.size()); for(Users
-		  users2 : usersList){ logger.info(users2); }*/
-		 
-		//logger.info(test.delete(5L));
+		logger.info(test.delete(4L));
+
+		logger.info(test.getCount("zhaosi"));
+		/*
+		 * List<Users> usersList = test.getUsersList(users);
+		 * logger.info(usersList.size()); for(Users users2 : usersList){
+		 * logger.info(users2); }
+		 */
+
 	}
 }
