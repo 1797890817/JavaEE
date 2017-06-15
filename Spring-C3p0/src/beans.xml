@@ -9,7 +9,7 @@
 		<!-- 指定连接数据库的驱动 -->
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<!-- 指定连接数据库的URL -->
-		<property name="jdbcUrl" value="jdbc:mysql://192.168.1.10/spring" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/spring_c3p0" />
 		<!-- 指定连接数据库的用户名 -->
 		<property name="user" value="root" />
 		<!-- 指定连接数据库的密码 -->
