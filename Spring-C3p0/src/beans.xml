@@ -20,7 +20,7 @@
 		<property name="minPoolSize" value="2" />
 		<!-- 指定连接数据库连接池的初始连接数 -->
 		<property name="initialPoolSize" value="2" />
-		<!-- 指定连接数据库连接池的连接的最大空闲时间 -->
+		<!-- 指定连接数据库连接池的连接的最大空闲时间 ,单位是秒-->
 		<property name="maxIdleTime" value="200" />
 	</bean>
 
