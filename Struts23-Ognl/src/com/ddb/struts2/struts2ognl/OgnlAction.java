@@ -62,22 +62,6 @@ public class OgnlAction extends ActionSupport {
 		persons.add(person3);
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
-	public String execute() throws Exception {
-		initData();
-		valueStack();
-		ActionContext actionContext=ActionContext.getContext();
-		Map request=actionContext.getContextMap();
-		Map session=actionContext.getSession();
-		Map application=actionContext.getApplication();
-		request.put("personName", persons.get(0).getName());
-		session.put("personName", persons.get(1).getName());
-		application.put("personName", persons.get(2).getName());
-		
-		return SUCCESS;
-	}
-	
 	public void valueStack() throws OgnlException {
 		Student stu=new Student("Jack",20);
 		Teacher tea=new Teacher("Scott",40);
@@ -99,4 +83,22 @@ public class OgnlAction extends ActionSupport {
 		out.println(valueStack.findValue("score"));
 		out.println("=============================");
 	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public String execute() throws Exception {
+		initData();
+		valueStack();
+		ActionContext actionContext=ActionContext.getContext();
+		Map request=actionContext.getContextMap();
+		Map session=actionContext.getSession();
+		Map application=actionContext.getApplication();
+		request.put("personName", persons.get(0).getName());
+		session.put("personName", persons.get(1).getName());
+		application.put("personName", persons.get(2).getName());
+		
+		return SUCCESS;
+	}
+	
+	
 }

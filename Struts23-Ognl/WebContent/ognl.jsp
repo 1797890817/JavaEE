@@ -5,6 +5,9 @@
 <title>OGNL表达式用法示例</title>
 </head>
 <body>
+
+	<%-- use <s:debug/> for debug! --%>
+	<s:debug />
 	<table border="1">
 		<caption>
 			<strong>访问Struts
@@ -119,7 +122,7 @@
 			<td><s:property value="persons[2].aliases[0]" /></td>
 		</tr>
 	</table>
-	
+
 	<p>
 	<table border="1">
 		<caption>
@@ -176,6 +179,7 @@
 		</s:iterator>
 	</ul>
 	<p>字串测试</p>
-	<s:property value="'chinaprc'"/>
+	<%-- <s:property value="'chinaprc'" /> --%>
+	<s:property value="chinaprc" />
 </body>
 </html>
