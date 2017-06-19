@@ -174,12 +174,13 @@
 	</ul>
 	<p>投影示例: persons.{name}</p>
 	<ul>
-		<s:iterator value="persons.{getAge()}">
+		<%-- <s:iterator value="persons.{getAge()}"> --%>
+		<s:iterator value="persons.{name}">
 			<li><s:property /></li>
 		</s:iterator>
 	</ul>
 	<p>字串测试</p>
-	<%-- <s:property value="'chinaprc'" /> --%>
-	<s:property value="chinaprc" />
+	<s:property value="'chinaprc'" />
+	<%-- <s:property value="chinaprc" /> --%>
 </body>
 </html>
