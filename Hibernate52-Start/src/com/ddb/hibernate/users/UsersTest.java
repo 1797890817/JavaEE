@@ -108,22 +108,20 @@ public class UsersTest {
 
 	public static void main(String[] args) {
 		UsersTest test = new UsersTest();
-//		 Long userId = test.insert(new Users(null,"jack14","jack14"));
-//		 logger.info(userId);
-//		 logger.info(test.getUsersById(userId));
+		 //Long userId = test.insert(new Users(null,"jack1","jack1"));
+		 //logger.info(userId);
+		 //test.update(new Users(2L,"tom11", "tom11")); 
 
-		 //test.update(new Users(4L,"tom11", "tom11")); 
+		Users users = new Users();
+		//users.setId(2L);
+		
+		test.delete(users);
 
-//		Users users = new Users();
-//		users.setId(3L);
-//		
-//		test.delete(users);
-
-		 logger.info(test.getUsersById(5L));
-		//
-//		List<Users> usersList = test.getUsersList();
-//		for (Users users1 : usersList) {
-//			logger.info(users1);
-//		}
+		 //logger.info(test.getUsersById(2L));
+		
+		List<Users> usersList = test.getUsersList();
+		for (Users users1 : usersList) {
+			logger.info(users1);
+		}
 	}
 }
