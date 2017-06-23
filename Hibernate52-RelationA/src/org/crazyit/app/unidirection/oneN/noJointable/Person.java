@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
 /**
  * Description:
  * <br/>网站: <a href="http://www.crazyit.org">疯狂Java联盟</a>
@@ -23,6 +26,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="person_inf")
+@Getter@Setter
 public class Person
 {
 	// 标识属性
@@ -38,43 +42,4 @@ public class Person
 	private Set<Address> addresses
 		= new HashSet<>();
 
-	// id的setter和getter方法
-	public void setId(Integer id)
-	{
-		this.id = id;
-	}
-	public Integer getId()
-	{
-		return this.id;
-	}
-
-	// name的setter和getter方法
-	public void setName(String name)
-	{
-		this.name = name;
-	}
-	public String getName()
-	{
-		return this.name;
-	}
-
-	// age的setter和getter方法
-	public void setAge(int age)
-	{
-		this.age = age;
-	}
-	public int getAge()
-	{
-		return this.age;
-	}
-
-	// addresses的setter和getter方法
-	public void setAddresses(Set<Address> addresses)
-	{
-		this.addresses = addresses;
-	}
-	public Set<Address> getAddresses()
-	{
-		return this.addresses;
-	}
 }

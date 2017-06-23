@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
 /**
  * Description:
  * <br/>网站: <a href="http://www.crazyit.org">疯狂Java联盟</a>
@@ -18,6 +21,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="address_inf")
+@Getter@Setter
 public class Address
 {
 	// 标识属性
@@ -37,23 +41,4 @@ public class Address
 		this.addressDetail = addressDetail;
 	}
 
-	// addressId的setter和getter方法
-	public void setAddressId(int addressId)
-	{
-		this.addressId = addressId;
-	}
-	public int getAddressId()
-	{
-		return this.addressId;
-	}
-
-	// addressDetail的setter和getter方法
-	public void setAddressDetail(String addressDetail)
-	{
-		this.addressDetail = addressDetail;
-	}
-	public String getAddressDetail()
-	{
-		return this.addressDetail;
-	}
 }
