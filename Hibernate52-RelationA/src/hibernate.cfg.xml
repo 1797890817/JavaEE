@@ -36,8 +36,8 @@
 		<!-- 罗列所有持久化类的类名 -->
 		<!-- <mapping class="org.crazyit.app.unidirection.N1nojointable.Person"/>
 		<mapping class="org.crazyit.app.unidirection.N1nojointable.Address"/> -->
-		<mapping class="org.crazyit.app.unidirection.N1jointable.Person"/>
-		<mapping class="org.crazyit.app.unidirection.N1jointable.Address"/>
+		<!-- <mapping class="org.crazyit.app.unidirection.N1jointable.Person"/>
+		<mapping class="org.crazyit.app.unidirection.N1jointable.Address"/> -->
 		
 		<!-- <mapping class="org.crazyit.app.unidirection.oneone.fk.Person"/>
 		<mapping class="org.crazyit.app.unidirection.oneone.fk.Address"/> -->
@@ -58,13 +58,16 @@
 		<mapping class="org.crazyit.app.bidirectional.oneN.nojoinTable.Address"/> -->
 		
 		<!-- <mapping class="org.crazyit.app.bidirectional.oneN.joinTable.Person"/>
-		<mapping class="org.crazyit.app.bidirectional.oneN.joinTable.Address"/> -->
-		
+		<mapping class="org.crazyit.app.bidirectional.oneN.joinTable.Address"/>
+		 -->
 		<!-- <mapping class="org.crazyit.app.bidirectional.NN.Person"/>
 		<mapping class="org.crazyit.app.bidirectional.NN.Address"/> -->
 		
 		<!-- <mapping class="org.crazyit.app.bidirectional.oneOne.FK.Person"/>
 		<mapping class="org.crazyit.app.bidirectional.oneOne.FK.Address"/> -->
+		
+		<mapping class="org.crazyit.app.bidirectional.oneOne.jointable.Person"/>
+		<mapping class="org.crazyit.app.bidirectional.oneOne.jointable.Address"/>
 		
 		<!-- <mapping class="org.crazyit.app.componentEntity.Person"/>
 		<mapping class="org.crazyit.app.componentEntity.School"/>  -->
