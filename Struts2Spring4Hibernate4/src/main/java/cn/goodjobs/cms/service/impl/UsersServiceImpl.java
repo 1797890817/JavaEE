@@ -15,38 +15,38 @@ public class UsersServiceImpl implements UsersService {
 	@Autowired
 	private UsersDao usersDao;
 	
-	@Override
+	//@Override
 	public Long createUsers(Users users){
 		Long id =  usersDao.insert(users);
 		return id;
 	}
 
-	@Override
+	//@Override
 	public Long modifyUsers(Users users){
 		return usersDao.update(users);
 	}
 
-	@Override
+	//@Override
 	public Long removeUsers(Long id){
 		return usersDao.delete(id);
 	}
 
-	@Override
+	//@Override
 	public Users getUsers(Long id){
 		return usersDao.getUser(id);
 	}
 
-	@Override
+	//@Override
 	public List<Users> getUsersList(Users users){
 		return usersDao.getUsersList(users);
 	}
 
-	@Override
+	//@Override
 	public int getUsersCount(Users users) {
 		return usersDao.getUsersCount(users);
 	}
 
-	@Override
+	//@Override
 	public List<Users> getUsersPaginatedList(Users users, int first, int count) {
 		return usersDao.getUsersPaginatedList(users, first, count);
 	}
