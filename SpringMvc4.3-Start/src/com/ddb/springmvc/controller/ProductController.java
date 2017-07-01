@@ -22,7 +22,7 @@ public class ProductController {
 	// 自动注入向后端数据库写数据的组件
 	@Autowired
 	private ProductService productService;
-
+	//http://localhost:8080/SpringMvc4.3-Start/product_input.action
 	@RequestMapping(value = "/product_input")
 	public String inputProduct() {
 		logger.info("inputProduct 被调用！");
