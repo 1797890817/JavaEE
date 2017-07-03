@@ -91,10 +91,11 @@ public class Test {
 	
 	public static void main(String[] args)throws Exception {		
 		Test test = new Test();
-		test.init();		
+		//test.init();	
+		test.init2();
 		UserInfo userInfo = new UserInfo();
 		//测试插入数据
-		userInfo.setUsername("jack98");
+//		userInfo.setUsername("jack98");
 //		userInfo.setPassword("jack98");		
 //		test.insert(userInfo);
 		// 测试更新数据
@@ -103,12 +104,10 @@ public class Test {
 //		userInfo.setPassword("8888888");
 //		test.update(userInfo);
 		//删除数据
-//		test.delete(2);
+		//test.delete(2);
 		
 		//System.out.println(test.getOne(1));	
-		
-		test.init();
-		//test.init2();
+
 		List<UserInfo> userInfoList = test.getList(userInfo);
 		for(UserInfo userInfoX : userInfoList){
 			System.out.println(userInfoX);

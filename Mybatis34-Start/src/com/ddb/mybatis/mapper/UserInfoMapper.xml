@@ -3,7 +3,7 @@
  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ddb.mybatis.domain.UserInfo"> 
     <!-- 返回结果对象属性与表字段映射 -->
-	<resultMap type="UserInfo" id="resultListUserInfo">
+	<resultMap id="resultListUserInfo" type="UserInfo" >
         <id column="id" property="id" />
         <result column="username" property="username" />
         <result column="password" property="password" />
@@ -18,7 +18,7 @@
     	</where>
     </select>    
     <!-- 根据id查询得到一个UserInfo对象     -->
-    <select id="getUserInfoById" parameterType="Integer" resultType="com.ddb.mybatis.domain.UserInfo">
+    <select id="getUserInfoById" parameterType="Integer" resultType="com.ddb.mybatis.domain.UserInfo" >
         select id,username,password from user_info where id=#{id:INTEGER}
     </select>    
     <!-- 插入数据库表数据     -->
