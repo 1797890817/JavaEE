@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>Home,from forward</h1>
+	<a href="pages/login.html">登录</a>
 </body>
 </html>
