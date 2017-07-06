@@ -6,6 +6,37 @@
 <body>
 	<center>学生管理</center>
 	<center>
+		<form action="<%=request.getContextPath()%>/student/del" method="post">
+			<a
+				href="<%=request.getContextPath()%>/pages/jsp/student/studentAdd.jsp">新增</a>
+			<a href="<%=request.getContextPath()%>/student/getall">获取所有</a> <input
+				type="submit" value="批量删除" /><span>----尽量不使用JavaScript的方式</span>
+			<hr />
+			<table border="1" bordercolor="blue" cellspacing="0">
+				<tr>
+					<th>选择</th>
+					<th>准考证号</th>
+					<th>姓名</th>
+					<th>性别</th>
+					<th>操作</th>
+				</tr>
+				<c:forEach var="stu" items="${list}">
+					<tr>
+						<td><input type="checkbox" name="ids" value="${stu.id}" /></td>
+						<td><a
+							href="<%= request.getContextPath()%>/student/getone/${stu.id}">${stu.stuId}</a>
+						</td>
+						<td>${stu.stuName}</td>
+						<td>${stu.stuSex}</td>
+						<td><a
+							href="<%= request.getContextPath()%>/student/del/${stu.id}">删除</a></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</form>
+	</center>
+	<hr />
+	<center>
 		<table>
 			<tr>
 				<td><input id="stuAddBtn" type="button" value="新增学生" /></td>
@@ -16,30 +47,5 @@
 		</table>
 	</center>
 	<hr />
-	<a href="<%= request.getContextPath() %>/pages/jsp/student/studentAdd.jsp">新增</a>
-	<a href="<%= request.getContextPath() %>/student/getall">获取所有</a>
-	<hr />
-	<center>
-
-		<table border="1" bordercolor="blue" cellspacing="0">
-			<tr>
-				<th>选择</th>
-				<th>准考证号</th>
-				<th>姓名</th>
-				<th>性别</th>
-				<th>操作</th>
-			</tr>
-			<c:forEach var="stu" items="${list}">
-				<tr>
-					<td><input type="checkbox" name="ids" value="${stu.id}" /></td>
-					<td><a href="<%= request.getContextPath()%>/student/getone/${stu.id}">${stu.stuId}</a> </td>
-					<td>${stu.stuName}</td>
-					<td>${stu.stuSex}</td>
-					<td><a href="<%= request.getContextPath()%>/student/del/${stu.id}">删除</a></td>
-				</tr>
-			</c:forEach>
-		</table>
-	</center>
-
 </body>
 </html>

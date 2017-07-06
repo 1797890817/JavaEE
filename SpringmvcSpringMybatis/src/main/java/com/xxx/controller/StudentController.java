@@ -57,9 +57,18 @@ public class StudentController {
 	
 	// 删除学生的方法
 	@RequestMapping(value = "/del", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView delStudentByIds(HttpServletRequest request, HttpServletResponse response, List<Integer> ids) {
+	public ModelAndView delStudentByIds(HttpServletRequest request, HttpServletResponse response ) {
+		String[] ids=request.getParameterValues("ids");	//获取选中的id
 		System.out.println("in del... ids=" + ids);
-		studentService.delete(ids);
+		//将String的数组转换为list
+		if (null !=ids) {
+			List<Integer> list = new ArrayList<Integer>();
+			for (int i = 0; i < ids.length; i++) {
+				list.add(Integer.parseInt(ids[i]));
+			}
+			studentService.delete(list);
+		}
+		
 		return toStudentHomePage();
 	}
 
