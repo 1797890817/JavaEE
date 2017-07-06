@@ -27,44 +27,40 @@ public class StudentController {
 
 	// 添加学生的方法
 	@RequestMapping(value = "/add", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addStudent(HttpServletRequest request, HttpServletResponse response, Student student)
+	public ModelAndView addStudent(HttpServletRequest request, HttpServletResponse response, Student student)
 			throws IOException {
 		System.out.println("in add...");
 		studentService.insert(student);
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("student/studentMain");
-		response.sendRedirect("student/home");
-		// return "redirect:student/home";
-		// return mv;
-		return null;
+		//重新获取数据
+		ModelAndView mv = toStudentHomePage();
+		return mv;
 	}
-
+	
 	// 更新学生的方法
 	@RequestMapping(value = "/mod", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modStudent(HttpServletRequest request, HttpServletResponse response, Student student) {
+	public ModelAndView modStudent(HttpServletRequest request, HttpServletResponse response, Student student) {
 		System.out.println("in mod...");
 		studentService.update(student);
-		return "student/studentMain";
+		return toStudentHomePage();
 	}
 
 	// 删除学生的方法--通过id
 	@RequestMapping(value = "/del/{id}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String delStudentByIds(HttpServletRequest request, HttpServletResponse response,@PathVariable Integer id) {
-		System.out.println("in del by id...");
-		System.out.println("id=" + id);
+	public ModelAndView delStudentByIds(HttpServletRequest request, HttpServletResponse response,@PathVariable Integer id) {
+		System.out.println("in del by id... id=" + id);
 		List<Integer> ids =new ArrayList<Integer>();
 		ids.add(id);
 		studentService.delete(ids);
-		return "student/studentMain";
+		
+		return toStudentHomePage();
 	}
 	
 	// 删除学生的方法
 	@RequestMapping(value = "/del", method = { RequestMethod.GET, RequestMethod.POST })
-	public String delStudentByIds(HttpServletRequest request, HttpServletResponse response, List<Integer> ids) {
-		System.out.println("in del...");
-		System.out.println("ids=" + ids);
-		
-		return "forward:/student/getall";
+	public ModelAndView delStudentByIds(HttpServletRequest request, HttpServletResponse response, List<Integer> ids) {
+		System.out.println("in del... ids=" + ids);
+		studentService.delete(ids);
+		return toStudentHomePage();
 	}
 
 	// 获取学生的方法
@@ -73,6 +69,7 @@ public class StudentController {
 			@PathVariable Integer id) {
 		System.out.println("in getone:请求数据的ID=" + id);
 		Student student = studentService.getOne(id);
+		
 		System.out.println(student.getStuName());
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("stu", student);
@@ -82,19 +79,16 @@ public class StudentController {
 
 	// 获取单个学生的方法
 	@RequestMapping(value = "/getall", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView getAllStudents(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView getAllStus(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("in getAll...");
-		List<Student> list = studentService.getAllStudents();
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("list", list);
-		mv.setViewName("student/studentMain");
-		return mv;
+		
+		return toStudentHomePage();
 	}
 
-	// 返回到Student的主页面
-	@RequestMapping("/home")
-	public ModelAndView toMainPage() {
-		ModelAndView mv = new ModelAndView();
+	private ModelAndView toStudentHomePage() {
+		ModelAndView mv =new ModelAndView();
+		List<Student> list= studentService.getAllStudents();
+		mv.addObject("list", list);
 		mv.setViewName("student/studentMain");
 		return mv;
 	}

@@ -20,9 +20,8 @@
 		</table>
 	</center>
 	<hr />
-	<a href="studentAdd.jsp">新增</a>
-	<a href="studentMod.jsp?id=1">更新</a>
-	<a href="/SpringmvcSpringMybatis/student/getall">获取所有</a>
+	<a href="<%= request.getContextPath() %>/pages/jsp/student/studentAdd.jsp">新增</a>
+	<a href="<%= request.getContextPath() %>/student/getall">获取所有</a>
 	<hr />
 	<center>
 
