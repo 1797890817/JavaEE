@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.dao.StudentMapper">
+	<!-- 结果映射 -->
+	<resultMap id="BaseResultMap" type="com.xxx.model.Student">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="stu_id" jdbcType="INTEGER" property="stuId" />
+		<result column="stu_name" jdbcType="VARCHAR" property="stuName" />
+		<result column="stu_sex" jdbcType="TINYINT" property="stuSex" />
+	</resultMap>
+
+	<!-- 通过主键删除 -->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		student
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<!-- 删除student 使用ids -->
+	<delete id="deleteByIds" >
+		delete from student
+		where id in
+		<foreach item="item" collection="ids" open="(" close=")"
+			separator=",">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!-- 所有属性都插入 -->
+	<insert id="insert" parameterType="com.xxx.model.Student">
+		insert into student (
+		stu_id,
+		stu_name,
+		stu_sex)
+		values (
+		#{stuId,jdbcType=INTEGER},
+		#{stuName,jdbcType=VARCHAR},
+		#{stuSex,jdbcType=TINYINT})
+	</insert>
+	<!-- 使用主键进行全字段更新 -->
+	<update id="updateByPrimaryKey" parameterType="com.xxx.model.Student">
+		update student
+		set
+		stu_id = #{stuId,jdbcType=INTEGER},
+		stu_name =
+		#{stuName,jdbcType=VARCHAR},
+		stu_sex = #{stuSex,jdbcType=TINYINT}
+		where
+		id = #{id,jdbcType=INTEGER}
+	</update>
+	<!-- 查询使用主键 -->
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select id, stu_id, stu_name, stu_sex
+		from student
+		where id =
+		#{id,jdbcType=INTEGER}
+	</select>
+	<!-- 查询所有 -->
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, stu_id, stu_name,
+		stu_sex
+		from student
+	</select>
+</mapper>
