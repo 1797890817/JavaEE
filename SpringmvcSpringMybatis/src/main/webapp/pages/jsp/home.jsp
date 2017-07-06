@@ -9,5 +9,7 @@
 <body>
 	<h1>Home,from forward</h1>
 	<a href="pages/login.html">登录</a>
+	<a href="<%= request.getContextPath() %>/student/getall">学生组件管理</a>
+	
 </body>
 </html>
