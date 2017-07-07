@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<head>
 <title>学生组件管理</title>
+<!-- 导入下面的js文件是为了使用Ajax发异步请求 -->
+<script type="text/javascript" src="/SpringmvcSpringMybatis/pages/script/jquery.min.js"></script>
+<script type="text/javascript" src="/SpringmvcSpringMybatis/pages/script/common.js"></script>
+<script type="text/javascript" src="/SpringmvcSpringMybatis/pages/script/ssm/ssmnamespace.js"></script>
+<script type="text/javascript" src="/SpringmvcSpringMybatis/pages/script/ssm/student/student.js"></script>
 </head>
 <body>
 	<center>学生管理</center>
@@ -12,7 +18,7 @@
 			<a href="<%=request.getContextPath()%>/student/getall">获取所有</a> <input
 				type="submit" value="批量删除" /><span>----尽量不使用JavaScript的方式</span>
 			<hr />
-			<table border="1" bordercolor="blue" cellspacing="0">
+			<table id="tab01" border="1" bordercolor="blue" cellspacing="0">
 				<tr>
 					<th>选择</th>
 					<th>准考证号</th>
@@ -47,5 +53,16 @@
 		</table>
 	</center>
 	<hr />
+	<center>
+		<table id="myTable" border="1" bordercolor="blue" cellspacing="0">
+			<tr>
+				<th>选择</th>
+				<th>准考证号</th>
+				<th>姓名</th>
+				<th>性别</th>
+			</tr>
+		</table>
+	</center>
+
 </body>
 </html>

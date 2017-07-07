@@ -4,182 +4,112 @@
 SSM.namespace("STU");
 SSM.STU = (function() {
 	"use strict";
-	var newStudent = { // 如果需要初始值，此处可以给默认值
-		'NewStu' : {
-			id : "",
-			stu_name : "",
-			stu_sex : "",
-			stu_id : "",
-		}
-	};
-
-	function initStu() {
-		var prop = newStudent.NewStu;
-		setStu(prop);
-	}
-
-	function getStudents(id, type) {
-		var data = {
-			"method" : "Stu",
-			needDetail : 0,
-			jsonrpc : type,
-			id : id
-		}
-		var ajaxReturn = function(data) {
-			if (data.result != SSM.constant.OPERA_SUCCESS) {
-				jboxErrorMsg(data);
-			} else {
-				if (id && !isNull(id)) {
-					SSM.STU.initStu();
-					$("#StuProfileName").attr("readonly", true);
-					$("#Stu_server_save").attr("Stuid", id);
-					/* common set date */
-					if (!isNull(type) && type == false)
-						changeJumpMenu({
-							menuli : "#network_tab",
-							menuCotent : "#tab_configHome"
-						}, {
-							ParentLi : "#component_tab",
-							childLi : "#Stu_tab",
-							childCotent : "#tab_Stu"
-						}, "1") // 为0显示当前页面，
-					clickChage("#Stu_content", "#Stu_table_content", "block",
-							"none");
-					setStu(data.StuProfiles[0]);
-				}
-				if (type) {
-					var selecList = getStuNames(data.StuProfiles);
-					SelectOptionSetInit(id, "StuProfiles", selecList, "default");
-				}
-
-				return;
-			}
-		};
-		SSM.ajaxUtil.ajaxCall("config/network/list", "POST", data, true,
-				ajaxReturn);
-	}
-
-	function setStu(prop) {
-		// stu_name
-		$("#StuProfileName").val(prop.stu_name);
-		$("#StuUpTimePeriod").val(prop.stu_sex);
-		$("#stu_id").val(prop.stu_id);
-		$("#id").val(prop.id);
-
-	}
-
-	function saveStu(id) {
-		var param, commonParam, url, StuDate, data;
-		StuDate = $('#StuFileInfo').serializeJson();
-		param = {
-			stu_name : StuDate.StuProfileName,
-			stu_sex : StuDate.StuUpTimePeriod,
-			stu_id : StuDate.stu_id,
-			id : StuDate.id,
-			Stu_server_3 : StuDate.Stu_server_3,
-		}
-
-		if (isNull(id)) {
-			data = {
-				method : "networkStuAdd",
-				"module" : "Stu",
-				param : param
-			}
-		} else {
-			commonParam = $.extend(true, {}, param, {
-				id : id
-			});
-
-			data = {
-				"module" : "Stu",
-				method : "networkStuMod",
-				param : commonParam
-			}
-		}
-
-		var ajaxReturn = function(data) {
-			if (data.result != SSM.constant.OPERA_SUCCESS) {
-				if (data.result == 102101) {
-					var valid = "<span class='errorSpan'></span>";
-					validParam.errorShowTip("#StuProfileName", $.i18n
-							.prop("timeRangeNameExist"), valid);
-					return;
-				}
-				jboxErrorMsg(data);
-			} else {
-				var netId = $("#StuNetId").val();
-				if (isNull(netId)) {
-					jboxSuccessMsg($.i18n.prop("savesucceed"));
-					clickChage("#Stu_content", "#Stu_table_content", "none",
-							"block");
-					SSM.STU.getStu();
-				} else {
-					if (data.method == "networkStuAddResp") {
-						$("#StuProfiles").append(
-								"<option selected='selected' value='" + data.id
-										+ "'>" + $("#StuProfileName").val()
-										+ "</option>");
-						$("#StuProfiles").val(data.id);
-						setSelectValue("StuProfiles", $("#StuProfileName")
-								.val());
-						$("#editStuPro").show();
-					}
-					changeJumpMenu({
-						menuli : "#network_tab",
-						menuCotent : "#tab_configHome"
-					}, {
-						ParentLi : "#component_tab",
-						childLi : "#Stu_tab",
-						childCotent : "#tab_Stu"
-					}, "0") // 为0显示当前页面，
-				}
-				return;
-			}
-		};
-		// SSM.ajaxUtil.ajaxCall("config/radius/getRaiusProfileNames", "POST",
-		// data, true, ajaxReturn);
-		SSM.ajaxUtil.ajaxCall("config/network/operate", "POST", data, true,
-				ajaxReturn);
-	}
-
-	function delStu(id, nRows) {
-		var submit = function() {
-			var data = {
-				"module" : "Stu",
-				method : "networkStuDel",
-				param : {
-					ids : id
-				}
-			}
-			var ajaxReturn = function(data) {
-				if (data.result != SSM.constant.OPERA_SUCCESS) {
-					data.updateCallback = SSM.STU.getStu;
-					jboxErrorMsg(data);
-				} else {
-					jboxSuccessMsg($.i18n.prop('deletesucceed'));
-
-					$(nRows).each(function() {
-						_STUTable.fnDeleteRow(this);
-
-					});
-					$("#StuCheckAll").attr("checked", false);
-					return;
-				}
-			};
-			SSM.ajaxUtil.ajaxCall("config/network/operate", "POST", data, true,
-					ajaxReturn);
-		}
-		jboxConfirmMsg($.i18n.prop('comm_batch_delete_confirm'), submit);
-	}
 
 	function getStu(id) {
-		buildStuTable("Stu_report_containers", "#configStuTable", id);// or
-		// buildStuTable("Stu_report_containerss",
-		// "#configRadiusTable",search);
+		if (!isNull(id)) {
+			window.location.href = "/SpringmvcSpringMybatis/student/getone/"
+					+ id;
+		}
+	}
+
+	function getStudents() {
+		$.ajax({
+			type : 'POST',
+			contentType : 'application/json',
+			url : '/SpringmvcSpringMybatis/student/getall',
+			processData : false,
+			dataType : 'json',
+			data : '{}',
+			success : function(data) {
+				console.log("%o", data);
+				// 动态修改DOM
+				append2Dom(data);
+
+			},
+			error : function() {
+				alert("杯具了，保存失败！");
+			}
+		});
+
+	}
+
+	function append2Dom(list) {
+		// 判断list的非空
+		if (isNull(list)) {
+			return
+		} else {
+			var items = "";
+			// 追加动态生成的组件
+			var title ="<tr><th>选择</th><th>准考证号</th><th>姓名</th><th>性别</th></tr>";
+			for (var i = 0; i < list.length; i++) {
+				var tmp = "<tr><td><input type='checkbox' name='ids' value='"
+						+ list[i].id + "' /></td><td>" + list[i].stuId
+						+ "</td><td>" + list[i].stuName + "</td><td>"
+						+ list[i].stuSex + "</td>" + "</tr>";
+				items = items + tmp;
+			}
+			
+			$("#myTable").empty();//删除原来的子元素，防止重复生成
+			// 获取需要追加元素的组件
+			$("#myTable").append(title+items);
+		}
+	}
+
+	function saveStu(id) { // 有id为更新，没有id为新增！
+		var requesturl = "/SpringmvcSpringMybatis/student/addOrmod";
+		var reqdata;
+		if (isNull(id)) {
+			reqdata = '{"stuName":"' + $("#stuName").val() + '","stuSex":"'
+					+ $("#stuSex").val() + '","stuId":"' + $("#stuId").val()
+					+ '"}';
+
+		} else {
+			reqdata = '{"stuName":"' + $("#stuName").val() + '","stuSex":"'
+					+ $("#stuSex").val() + '","stuId":"' + $("#stuId").val()
+					+ '","id":"' + $("#id").val() + '"}';
+		}
+
+		$.ajax({
+					type : 'POST',
+					contentType : 'application/json',
+					url : requesturl,
+					processData : false,
+					dataType : 'json',
+					data : reqdata,
+					success : function(data) {
+						console.log("%o", data);
+						//alert(data.result);
+						//返回到主页面
+						window.location.href = "/SpringmvcSpringMybatis/pages/jsp/student/studentMain.jsp"
+					},
+					error : function() {
+						alert("杯具了，保存失败！");
+					}
+				});
+
+	}
+
+	function delStu(ids) {
+		$.ajax({
+			type : 'POST',
+			contentType : 'application/json',
+			url : "/SpringmvcSpringMybatis/student/del",
+			processData : false,
+			dataType : 'json',
+			data : '{"ids":"' + ids + '"}',
+			success : function(data) {
+				//alert(data.result);
+				//返回到主页面
+				window.location.href = "/SpringmvcSpringMybatis/pages/jsp/student/studentMain.jsp"
+			},
+			error : function() {
+				alert("杯具了，删除失败！");
+			}
+		});
+
 	}
 
 	return {
-		initStu : initStu,
 		saveStu : saveStu, // 新增和更新可以用一个
 		delStu : delStu,
 		getStu : getStu,
@@ -188,61 +118,67 @@ SSM.STU = (function() {
 })();
 
 $(function() {
-	// TODO SSM.STU //StuTableAdd StuTabEdit StuTabDelete StuTableRefresh
-	$("#StuTableAdd").click(function() {
-		$("#StuNetId").val("");
-		clickChage("#Stu_content", "#Stu_table_content", "block", "none");
-		SSM.STU.initStu();
+	//实现页面载入完成后，自动查询所有数据，也就是回到这个主页面要看到数据的变化，类似刷新的功能。
+	window.onload=SSM.STU.getStudents();
+	// SSM.STU
+	// 新增按钮
+	$("#stuAddBtn").click(function() {
+		window.location.href = "/SpringmvcSpringMybatis/pages/jsp/student/studentMod.jsp";
 	});
 
-	$("#Stu_server_cancel").click(function(e) {
-		e.preventDefault();
+	// 修改按钮
+	$("#stuModBtn").click(function() {
+		// 获取选中的checkbox
+		var ids = [];
+		$("#myTable :input:checked").each(function() {
+			ids.push($(this).val());
+		});
 
+		if (isNull(ids) || ids.length > 1) {
+			alert("请选择一条记录以更新！");
+		} else {
+			SSM.STU.getStu(ids[0]);
+		}
 	});
-	$("#StuTabDelete")
+
+	// 保存按钮
+	$("#stuSaveBtn").click(function() {
+		// 判断是否存在id,决定是保存还是更新
+		var id = $("#id").val();
+		if (isNull(id)) {
+			SSM.STU.saveStu();
+		} else {
+			SSM.STU.saveStu(id);
+		}
+	})
+
+	// 取消按钮
+	$("#stuCancelBtn")
 			.click(
-					function(e) {
-						e.preventDefault();
-						var nRow, ids;
-						nRows = $(
-								"#Stu_report_containers input[name='Stu_sel_list']:checkbox:checked")
-								.parent().parent("tr").map(function() {
-									return this;
-								}).get();
-						ids = getRowsIds("#Stu_report_containers",
-								'Stu_sel_list');
-						if (isNull(ids)) {
-							return;
-						}
-						SSM.STU.delStu(ids, nRows);
-					});
-	$("#StuTabEdit").click(function(e) {
-		e.preventDefault();
+					function() {
+						// 回到主页面
+						window.location.href = "/SpringmvcSpringMybatis/pages/jsp/student/studentMain.jsp"
+					})
 
-	});
-	$("#StuTableRefresh").click(function(e) {
-		e.preventDefault();
-		SSM.STU.getStu("");
+	// 删除按钮
+	$("#stuDelBtn").click(function() {
+		// 获取选中的checkbox
+		var ids = [];
+		$("#myTable :input:checked").each(function() {
+			ids.push($(this).val());
+		});
+
+		if (isNull(ids) || ids.length < 1) {
+			showmsg("请至少选择一条记录以删除！");
+		} else {
+			SSM.STU.delStu(ids);
+		}
 	});
 
-	$("#Stu_report_containers tbody tr").live('click', function(e) {
-		e.preventDefault();
-		Select_Datatable_Row($(this));
-	});
-	$("#Stu_server_save").click(
-			function() {
-				// e.preventDefault();
-				var id;
-				id = $(this).attr("Stuid");
-				if (validParam.getValid("StuFileInfo", "StuProfileName")
-						&& validParam.StuServerExclusive()) {
-					if (isNull(id)) {
-						SSM.STU.saveStu();
-					} else {
-						SSM.STU.saveStu(id);
-					}
-				}
-			});
+	// 查询按钮
+	$("#stuGetBtn").click(function() {
+		SSM.STU.getStudents();
+	})
 
 	/* rooter */
 });

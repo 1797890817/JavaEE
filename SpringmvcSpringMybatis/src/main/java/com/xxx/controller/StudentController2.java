@@ -1,6 +1,5 @@
 package com.xxx.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,57 +9,51 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.xxx.controller.valueobject.RequestObject;
+import com.xxx.controller.valueobject.ResultObject;
 import com.xxx.model.Student;
 import com.xxx.service.IStudentService;
 
-//@Controller
-//@RequestMapping("/student")
-//这个控制器是不使用异步的对应方式
-public class StudentController {
+@Controller
+@RequestMapping("/student")
+public class StudentController2 {	//这个控制器是处理异步请求的方式
 
 	// 自动注入需要的Service组件
 	@Autowired
 	private IStudentService studentService;
 
-	// 添加学生的方法
-	@RequestMapping(value = "/add", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView addStudent(HttpServletRequest request, HttpServletResponse response, Student student)
-			throws IOException {
-		System.out.println("in add...");
-		studentService.insert(student);
-		//重新获取数据
-		ModelAndView mv = toStudentHomePage();
-		return mv;
-	}
-	
-	// 更新学生的方法
-	@RequestMapping(value = "/mod", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView modStudent(HttpServletRequest request, HttpServletResponse response, Student student) {
-		System.out.println("in mod...");
-		studentService.update(student);
-		return toStudentHomePage();
+	// 添加、更新学生的方法
+	@RequestMapping(value = "/addOrmod", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody ResultObject modStudent(HttpServletRequest request, HttpServletResponse response, @RequestBody Student student) {
+		System.out.println("in addOrmod...");
+		ResultObject ro = new ResultObject();
+		if (null ==student || null==student.getStuId()) {
+			return ro;
+		}
+		
+		if (student.getId() ==null ) {
+			System.out.println("执行数据插入");
+			studentService.insert(student);
+		} else {
+			System.out.println("执行数据更新");
+			studentService.update(student);
+		}
+		ro.setResult("ok");
+		return ro;
 	}
 
-	// 删除学生的方法--通过id
-	@RequestMapping(value = "/del/{id}", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView delStudentByIds(HttpServletRequest request, HttpServletResponse response,@PathVariable Integer id) {
-		System.out.println("in del by id... id=" + id);
-		List<Integer> ids =new ArrayList<Integer>();
-		ids.add(id);
-		studentService.delete(ids);
-		
-		return toStudentHomePage();
-	}
-	
 	// 删除学生的方法
 	@RequestMapping(value = "/del", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView delStudentByIds(HttpServletRequest request, HttpServletResponse response ) {
-		String[] ids=request.getParameterValues("ids");	//获取选中的id
-		System.out.println("in del... ids=" + ids);
+	public @ResponseBody ResultObject delStudentByIds(HttpServletRequest request, HttpServletResponse response ,@RequestBody RequestObject requestObject) {
+		ResultObject resultObject = new ResultObject();
+		System.out.println("in del... ids=" + requestObject.getIds());
+		String[] ids= requestObject.getIds().split(",");
 		//将String的数组转换为list
 		if (null !=ids) {
 			List<Integer> list = new ArrayList<Integer>();
@@ -69,8 +62,8 @@ public class StudentController {
 			}
 			studentService.delete(list);
 		}
-		
-		return toStudentHomePage();
+		resultObject.setResult("数据删除成功！");
+		return resultObject;
 	}
 
 	// 获取学生的方法
@@ -87,12 +80,13 @@ public class StudentController {
 		return mv;
 	}
 
-	// 获取单个学生的方法
+	// 获取所有学生的方法
 	@RequestMapping(value = "/getall", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView getAllStus(HttpServletRequest request, HttpServletResponse response) {
+	@ResponseBody
+	public List<Student> getAllStus(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("in getAll...");
-		
-		return toStudentHomePage();
+		List<Student> list= studentService.getAllStudents();
+		return list;
 	}
 
 	private ModelAndView toStudentHomePage() {

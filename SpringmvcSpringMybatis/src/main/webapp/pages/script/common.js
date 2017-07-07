@@ -164,3 +164,31 @@ function loginout(){
 	clearLocalStorage();
 	window.location.href = ctx+"/pages/login.html";
 }
+
+// 显示消息
+var G = {
+		timer : null,
+		timer2 : null
+	}
+
+function showmsg(str) {
+		if (!$("#msg").length) {
+			G.msg = $("<div id='msg' />").prependTo(document.body);
+		}
+		if (G.timer) {
+			clearTimeout(G.timer);
+			G.msg.hide();
+			G.msg.removeClass("slidedown").removeClass("slideup");
+		}
+		if (G.timer2) {
+			clearTimeout(G.timer2);
+		}
+
+		G.msg.html(str).show().addClass("slidedown");
+		G.timer = setTimeout(function() {
+			G.msg.removeClass("slidedown").addClass("slideup");
+			G.timer2 = setTimeout(function() {
+				G.msg.hide();
+			}, 500);
+		}, 3000);
+	}

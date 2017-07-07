@@ -9,7 +9,8 @@
 <body>
 	<h1>Home,from forward</h1>
 	<a href="pages/login.html">登录</a>
-	<a href="<%= request.getContextPath() %>/student/getall">学生组件管理</a>
+	<%-- <a href="<%= request.getContextPath() %>/student/getall">学生组件管理</a> --%>
+	<a href="<%= request.getContextPath() %>/pages/jsp/student/studentMain.jsp">学生组件管理</a> <!-- 使用异步ajax的方式！ -->
 	
 </body>
 </html>

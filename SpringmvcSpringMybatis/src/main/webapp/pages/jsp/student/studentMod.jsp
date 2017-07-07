@@ -5,6 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>更新组件</title>
+<!-- 导入下面的js文件是为了使用Ajax发异步请求 -->
+<script type="text/javascript" src="/SpringmvcSpringMybatis/pages/script/jquery.min.js"></script>
+<script type="text/javascript" src="/SpringmvcSpringMybatis/pages/script/common.js"></script>
+<script type="text/javascript" src="/SpringmvcSpringMybatis/pages/script/ssm/ssmnamespace.js"></script>
+<script type="text/javascript" src="/SpringmvcSpringMybatis/pages/script/ssm/student/student.js"></script>
 </head>
 <body>
 	<center>修改学生</center>
@@ -29,8 +34,9 @@
 						value="${stu.stuSex}" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" value="保存" /> <input
-						type="reset" value="取消" /></td>
+					<!-- <td colspan="2"><input type="submit" value="保存" /> <input
+						type="reset" value="取消" /></td> -->
+						<td><input id="stuSaveBtn" type="button" value="保存"/> <input id="stuCancelBtn" type="button" value="返回" /> </td>
 				</tr>
 			</table>
 		</form>
