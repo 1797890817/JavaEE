@@ -218,15 +218,16 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<!-- <version>3.1</version> -->
+				<!-- <version>2.3.2</version> -->
+				<version>3.0</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
 					<encoding>UTF-8</encoding>
 					<compilerArguments>
 						<verbose />
-						<bootclasspath>${java.home}/lib/rt.jar;${java.home}/lib/jce.jar</bootclasspath>
+						<!-- http://blog.csdn.net/u012759397/article/details/52099291 -->
+						<!-- <bootclasspath>${java.home}/lib/rt.jar;${java.home}/lib/jce.jar</bootclasspath> -->
 					</compilerArguments>
 				</configuration>
 			</plugin>

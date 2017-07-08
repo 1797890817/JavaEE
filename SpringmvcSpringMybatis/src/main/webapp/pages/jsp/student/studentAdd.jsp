@@ -10,7 +10,7 @@
 	<center>新增学生</center>
 	<hr />
 	<center>
-		<form action="/SpringmvcSpringMybatis/student/add" method="post">
+		<form action="<%=request.getContextPath()%>/student/add" method="post">
 			<table>
 				<tr>
 					<td><span>准考证号：</span></td>

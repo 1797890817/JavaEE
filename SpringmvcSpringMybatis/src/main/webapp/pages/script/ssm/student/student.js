@@ -4,19 +4,27 @@
 SSM.namespace("STU");
 SSM.STU = (function() {
 	"use strict";
+	var CONTEXT = ""; // URL的上下文，是否包含项目名，默认不包含，若包含修改之！
+
+	// 获取项目上下问路径
+	function getProjPath() {
+		if (window.location.href.indexOf("SpringmvcSpringMybatis") > 0) {
+			CONTEXT = "/SpringmvcSpringMybatis";
+		}
+	}
 
 	function getStu(id) {
 		if (!isNull(id)) {
-			window.location.href = "/SpringmvcSpringMybatis/student/getone/"
-					+ id;
+			window.location.href = CONTEXT + "/student/getone/" + id;
 		}
 	}
 
 	function getStudents() {
+		getProjPath();
 		$.ajax({
 			type : 'POST',
 			contentType : 'application/json',
-			url : '/SpringmvcSpringMybatis/student/getall',
+			url : CONTEXT + '/student/getall',
 			processData : false,
 			dataType : 'json',
 			data : '{}',
@@ -37,10 +45,11 @@ SSM.STU = (function() {
 		// 判断list的非空
 		if (isNull(list)) {
 			return
+
 		} else {
 			var items = "";
 			// 追加动态生成的组件
-			var title ="<tr><th>选择</th><th>准考证号</th><th>姓名</th><th>性别</th></tr>";
+			var title = "<tr><th>选择</th><th>准考证号</th><th>姓名</th><th>性别</th></tr>";
 			for (var i = 0; i < list.length; i++) {
 				var tmp = "<tr><td><input type='checkbox' name='ids' value='"
 						+ list[i].id + "' /></td><td>" + list[i].stuId
@@ -48,15 +57,15 @@ SSM.STU = (function() {
 						+ list[i].stuSex + "</td>" + "</tr>";
 				items = items + tmp;
 			}
-			
-			$("#myTable").empty();//删除原来的子元素，防止重复生成
+
+			$("#myTable").empty();// 删除原来的子元素，防止重复生成
 			// 获取需要追加元素的组件
-			$("#myTable").append(title+items);
+			$("#myTable").append(title + items);
 		}
 	}
 
 	function saveStu(id) { // 有id为更新，没有id为新增！
-		var requesturl = "/SpringmvcSpringMybatis/student/addOrmod";
+		var requesturl = CONTEXT + "/student/addOrmod";
 		var reqdata;
 		if (isNull(id)) {
 			reqdata = '{"stuName":"' + $("#stuName").val() + '","stuSex":"'
@@ -70,22 +79,23 @@ SSM.STU = (function() {
 		}
 
 		$.ajax({
-					type : 'POST',
-					contentType : 'application/json',
-					url : requesturl,
-					processData : false,
-					dataType : 'json',
-					data : reqdata,
-					success : function(data) {
-						console.log("%o", data);
-						//alert(data.result);
-						//返回到主页面
-						window.location.href = "/SpringmvcSpringMybatis/pages/jsp/student/studentMain.jsp"
-					},
-					error : function() {
-						alert("杯具了，保存失败！");
-					}
-				});
+			type : 'POST',
+			contentType : 'application/json',
+			url : requesturl,
+			processData : false,
+			dataType : 'json',
+			data : reqdata,
+			success : function(data) {
+				console.log("%o", data);
+				// alert(data.result);
+				// 返回到主页面
+				window.location.href = CONTEXT
+						+ "/pages/jsp/student/studentMain.jsp"
+			},
+			error : function() {
+				alert("杯具了，保存失败！");
+			}
+		});
 
 	}
 
@@ -93,14 +103,15 @@ SSM.STU = (function() {
 		$.ajax({
 			type : 'POST',
 			contentType : 'application/json',
-			url : "/SpringmvcSpringMybatis/student/del",
+			url : CONTEXT + "/student/del",
 			processData : false,
 			dataType : 'json',
 			data : '{"ids":"' + ids + '"}',
 			success : function(data) {
-				//alert(data.result);
-				//返回到主页面
-				window.location.href = "/SpringmvcSpringMybatis/pages/jsp/student/studentMain.jsp"
+				// alert(data.result);
+				// 返回到主页面
+				window.location.href = CONTEXT
+						+ "/pages/jsp/student/studentMain.jsp"
 			},
 			error : function() {
 				alert("杯具了，删除失败！");
@@ -109,7 +120,20 @@ SSM.STU = (function() {
 
 	}
 
+	// 下面两个方法之所以写在这里，是因为在ｊＱｕｅｒｙ中因为作用域的问题，取不到ＣＯＮＴＥＸＴ的内容！
+	function openAddOrModPage() {
+		window.location.href = CONTEXT + "/pages/jsp/student/studentMod.jsp";
+	}
+
+	function stuSaveCancel() {
+		// 回到主页面
+		window.location.href = CONTEXT + "/pages/jsp/student/studentMain.jsp"
+	}
+	// 若想上面的定义的常量和ｆｕｎｃｔｉｏｎ可以被外面调用，要使用下面的写法！！
 	return {
+		CONTEXT : CONTEXT, // 获取项目的上下文
+		openAddOrModPage : openAddOrModPage,
+		stuSaveCancel : stuSaveCancel,
 		saveStu : saveStu, // 新增和更新可以用一个
 		delStu : delStu,
 		getStu : getStu,
@@ -118,12 +142,12 @@ SSM.STU = (function() {
 })();
 
 $(function() {
-	//实现页面载入完成后，自动查询所有数据，也就是回到这个主页面要看到数据的变化，类似刷新的功能。
-	window.onload=SSM.STU.getStudents();
+	// 实现页面载入完成后，自动查询所有数据，也就是回到这个主页面要看到数据的变化，类似刷新的功能。
+	window.onload = SSM.STU.getStudents();
 	// SSM.STU
 	// 新增按钮
 	$("#stuAddBtn").click(function() {
-		window.location.href = "/SpringmvcSpringMybatis/pages/jsp/student/studentMod.jsp";
+		SSM.STU.openAddOrModPage();
 	});
 
 	// 修改按钮
@@ -153,12 +177,9 @@ $(function() {
 	})
 
 	// 取消按钮
-	$("#stuCancelBtn")
-			.click(
-					function() {
-						// 回到主页面
-						window.location.href = "/SpringmvcSpringMybatis/pages/jsp/student/studentMain.jsp"
-					})
+	$("#stuCancelBtn").click(function() {
+		SSM.STU.stuSaveCancel();
+	})
 
 	// 删除按钮
 	$("#stuDelBtn").click(function() {

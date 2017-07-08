@@ -192,3 +192,5 @@ function showmsg(str) {
 			}, 500);
 		}, 3000);
 	}
+
+

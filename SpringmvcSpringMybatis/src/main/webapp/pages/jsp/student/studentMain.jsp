@@ -4,10 +4,10 @@
 <head>
 <title>学生组件管理</title>
 <!-- 导入下面的js文件是为了使用Ajax发异步请求 -->
-<script type="text/javascript" src="/SpringmvcSpringMybatis/pages/script/jquery.min.js"></script>
-<script type="text/javascript" src="/SpringmvcSpringMybatis/pages/script/common.js"></script>
-<script type="text/javascript" src="/SpringmvcSpringMybatis/pages/script/ssm/ssmnamespace.js"></script>
-<script type="text/javascript" src="/SpringmvcSpringMybatis/pages/script/ssm/student/student.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/pages/script/jquery.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/pages/script/common.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/pages/script/ssm/ssmnamespace.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/pages/script/ssm/student/student.js"></script>
 </head>
 <body>
 	<center>学生管理</center>
@@ -63,6 +63,10 @@
 			</tr>
 		</table>
 	</center>
-
+	<!-- 修改项目的上下文 -->
+	<script >
+		
+	
+	</script>
 </body>
 </html>

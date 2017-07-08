@@ -6,16 +6,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>更新组件</title>
 <!-- 导入下面的js文件是为了使用Ajax发异步请求 -->
-<script type="text/javascript" src="/SpringmvcSpringMybatis/pages/script/jquery.min.js"></script>
-<script type="text/javascript" src="/SpringmvcSpringMybatis/pages/script/common.js"></script>
-<script type="text/javascript" src="/SpringmvcSpringMybatis/pages/script/ssm/ssmnamespace.js"></script>
-<script type="text/javascript" src="/SpringmvcSpringMybatis/pages/script/ssm/student/student.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/pages/script/jquery.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/pages/script/common.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/pages/script/ssm/ssmnamespace.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/pages/script/ssm/student/student.js"></script>
 </head>
 <body>
 	<center>修改学生</center>
 	<hr />
 	<center>
-		<form action="/SpringmvcSpringMybatis/student/mod" method="post">
+		<form action="<%=request.getContextPath()%>/student/mod" method="post">
 			<input id="id" type="hidden" name="id" value="${stu.id}">
 			<table>
 				<tr>
