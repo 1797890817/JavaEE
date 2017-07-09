@@ -17,6 +17,7 @@ public class StudentServiceImpl implements IStudentService {
 
 	@Override
 	public boolean insert(Student student) {
+		System.out.println("in student service insert...:"+student);
 		studentMapper.insert(student);
 		return true;
 	}

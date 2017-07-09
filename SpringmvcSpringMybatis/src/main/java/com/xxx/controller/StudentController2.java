@@ -22,7 +22,7 @@ import com.xxx.service.IStudentService;
 
 @Controller
 @RequestMapping("/student")
-public class StudentController2 {	//这个控制器是处理异步请求的方式
+public class StudentController2 { // 这个控制器是处理异步请求的方式
 
 	// 自动注入需要的Service组件
 	@Autowired
@@ -30,14 +30,16 @@ public class StudentController2 {	//这个控制器是处理异步请求的方�
 
 	// 添加、更新学生的方法
 	@RequestMapping(value = "/addOrmod", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody ResultObject modStudent(HttpServletRequest request, HttpServletResponse response, @RequestBody Student student) {
+	public @ResponseBody ResultObject modStudent(HttpServletRequest request, HttpServletResponse response,
+			@RequestBody Student student) {
 		System.out.println("in addOrmod...");
 		ResultObject ro = new ResultObject();
-		if (null ==student || null==student.getStuId()) {
+		if (null == student || null == student.getStuId()) {
 			return ro;
 		}
-		
-		if (student.getId() ==null ) {
+
+		System.out.println("student :" + student);
+		if (student.getId() == null) {
 			System.out.println("执行数据插入");
 			studentService.insert(student);
 		} else {
@@ -50,12 +52,13 @@ public class StudentController2 {	//这个控制器是处理异步请求的方�
 
 	// 删除学生的方法
 	@RequestMapping(value = "/del", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody ResultObject delStudentByIds(HttpServletRequest request, HttpServletResponse response ,@RequestBody RequestObject requestObject) {
+	public @ResponseBody ResultObject delStudentByIds(HttpServletRequest request, HttpServletResponse response,
+			@RequestBody RequestObject requestObject) {
 		ResultObject resultObject = new ResultObject();
 		System.out.println("in del... ids=" + requestObject.getIds());
-		String[] ids= requestObject.getIds().split(",");
-		//将String的数组转换为list
-		if (null !=ids) {
+		String[] ids = requestObject.getIds().split(",");
+		// 将String的数组转换为list
+		if (null != ids) {
 			List<Integer> list = new ArrayList<Integer>();
 			for (int i = 0; i < ids.length; i++) {
 				list.add(Integer.parseInt(ids[i]));
@@ -72,7 +75,7 @@ public class StudentController2 {	//这个控制器是处理异步请求的方�
 			@PathVariable Integer id) {
 		System.out.println("in getone:请求数据的ID=" + id);
 		Student student = studentService.getOne(id);
-		
+
 		System.out.println(student.getStuName());
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("stu", student);
@@ -85,13 +88,13 @@ public class StudentController2 {	//这个控制器是处理异步请求的方�
 	@ResponseBody
 	public List<Student> getAllStus(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("in getAll...");
-		List<Student> list= studentService.getAllStudents();
+		List<Student> list = studentService.getAllStudents();
 		return list;
 	}
 
 	private ModelAndView toStudentHomePage() {
-		ModelAndView mv =new ModelAndView();
-		List<Student> list= studentService.getAllStudents();
+		ModelAndView mv = new ModelAndView();
+		List<Student> list = studentService.getAllStudents();
 		mv.addObject("list", list);
 		mv.setViewName("student/studentMain");
 		return mv;

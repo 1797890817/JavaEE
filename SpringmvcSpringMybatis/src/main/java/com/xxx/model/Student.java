@@ -11,5 +11,12 @@ public class Student {
 	private Integer stuId;
 	private String stuName;
 	private Byte stuSex;
+	
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", stuId=" + stuId + ", stuName=" + stuName + ", stuSex=" + stuSex + "]";
+	}
+	
+	
 
 }
