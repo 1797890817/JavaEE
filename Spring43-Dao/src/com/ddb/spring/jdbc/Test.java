@@ -66,29 +66,30 @@ public class Test {
 	public static void main(String[] args) {
 		Test test = new Test();
 		test.init();
-		Users users = new Users();
+		 Users users = new Users();
 		// users.setId(1L);
-		users.setName("zhaosi");
-		users.setPass("666777");
-		// users.setName("zhaoliu");
-		// users.setPass("888888");
-		// logger.info(test.insert(users));
+		 users.setName("zhaosi");
+		 users.setPass("666777");
+		 users.setName("zhaoliu");
+		 users.setPass("888888");
+		 logger.info(test.insert(users));
 		// logger.info(test.update(users));
-		// Users users = test.getOne(1L);
-		// logger.info(users);
+		//Users users = test.getOne(1L);
+		logger.info(users);
 
 		// List<Users> usersList = test.getUsersList();
-		List<Users> usersList = test.getUsersList(users);
-		logger.info(usersList);
+		// List<Users> usersList = test.getUsersList(users);
+		// logger.info(usersList);
 
 		logger.info(test.delete(4L));
 
 		logger.info(test.getCount("zhaosi"));
-		/*
-		 * List<Users> usersList = test.getUsersList(users);
-		 * logger.info(usersList.size()); for(Users users2 : usersList){
-		 * logger.info(users2); }
-		 */
+
+		List<Users> usersList = test.getUsersList(users);
+		logger.info(usersList.size());
+		for (Users users2 : usersList) {
+			logger.info(users2);
+		}
 
 	}
 }
